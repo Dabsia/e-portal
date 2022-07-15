@@ -1,0 +1,24 @@
+.payments__description{
+    height: 50vh;
+    width: 95%;
+    padding: 10px;
+    background-color: #F6F6F6;
+    margin: 20px 0;
+}
+.btnContainer{
+    height: 30px;
+    width: 95%;
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+}
+.payBtn{
+    background-color: var(--primary_color);
+    color: #fff;
+    height: 30px;
+    width: fit-content;
+    padding:  1px 8px;
+    cursor: pointer;
+    outline: none;
+    border: none;
+}

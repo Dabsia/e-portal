@@ -1,0 +1,6 @@
+export const ActionTypes = {
+    STUDENT_PAID: 'STUDENT_PAID',
+    COMPLAINTS: 'COMPLAINTS',
+    SAVE_HOSTEL : 'SAVE_HOSTEL',
+    LOGOUT: 'LOGOUT'
+}
