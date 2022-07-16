@@ -1,0 +1,12 @@
+.addCourseContainer{
+    height: 30vh;
+    width: 95%;
+    padding: 10px;
+    background-color: #F6F6F6;
+    margin: 20px 0;
+
+}
+.cancel{
+    margin-right: 4px;
+    background-color: #848af7;
+}

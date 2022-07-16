@@ -2,13 +2,17 @@ import { ActionTypes } from "./ActionTypes";
 
 const initialState = {
     paid: false,
+    registered_course: false,
     complaint : [{
         id: 0,
         message: 'The hostel is smelling'
     }],
     hostel: {
         hostelName: '', hostelFlat : '', hostelRoomNumber : ''
-    }
+    }, 
+    courses: [{
+            courseName: '', courseCode: '', courseUnit: ''
+    }]
 }
 
 const reducer = (state = initialState, action) => {
@@ -22,6 +26,14 @@ const reducer = (state = initialState, action) => {
         case ActionTypes.SAVE_HOSTEL:
             return {
                 ...state, hostel: action.payload
+            }
+        case ActionTypes.ADD_COURSE:
+            return {
+                ...state, courses: [...state.courses, action.payload]
+            }
+        case ActionTypes.REGISTER_COURSES:
+            return {
+                ...state, registered_course: true
             }
         default:
             return state

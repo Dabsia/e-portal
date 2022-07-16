@@ -19,3 +19,6 @@
     border: 2px solid var(--primary_color);
     padding-left: 5px;
 }
+.paidFees{
+    color: red
+}

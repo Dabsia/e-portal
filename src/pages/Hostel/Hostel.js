@@ -12,7 +12,11 @@ const Hostel = () => {
     
     const dispatch = useDispatch()
 
+    // const API_KEY = "AIzaSyDOeMC8aU6VKdRIq8dQ8HFOcGuVeSUG7JA"
+    // const firebaseStorageUrl = 'https://e-portal-fc6d8-default-rtdb.firebaseio.com/'
+
     const hostel = useSelector(state => state.details.hostel)
+    const paid = useSelector(state => state.details.paid)
 
     const hostelDetails = {
         hostelName, hostelFlat, hostelRoomNumber
@@ -29,15 +33,15 @@ const Hostel = () => {
 
     return (
       <div>
-      
-        <div className='hostel__desc'>
-            <h2>Hostel Details</h2>
-            <p>Hostel Name: { hostel.hostelName} </p>
-            <p>Hostel Flat: { hostel.hostelFlat} </p>
-            <p>Room number:  { hostel.hostelRoomNumber} </p>
-            <div className='selectionsContainer'>
-                {/*Write a condition that if the sex is male show male hostel else female */}
-                
+            {
+                paid ?
+                    
+            <><div className='hostel__desc'>
+                <h2>Hostel Details</h2>
+                <p>Hostel Name: { hostel.hostelName} </p>
+                <p>Hostel Flat: { hostel.hostelFlat} </p>
+                <p>Room number:  { hostel.hostelRoomNumber} </p>
+                <div className='selectionsContainer'>
                     <select className="form-control" value = {hostelName} onChange = {e => setHostel(e.target.value)}>
                         <option disabled>Select Hostel</option>
                         <option name = 'abv'>Above Only</option>
@@ -51,12 +55,17 @@ const Hostel = () => {
                 </select>
                 
                 <input type='text' className = 'form-control' placeholder='Enter hostel flat' value={hostelFlat} onChange={e => setHostelFlat(e.target.value)} />
-                <input type='text' className = 'form-control' placeholder='Enter hostel number' value={ hostelRoomNumber} onChange = {e => setHostelRoomNumber(e.target.value)} />
+                <input type='text' className = 'form-control' placeholder='Enter room number' value={ hostelRoomNumber} onChange = {e => setHostelRoomNumber(e.target.value)} />
             </div>
             </div>
             <div className='btnContainer'>
                 <button onClick={handleHostelSubmit} className='payBtn'>Save Details</button>
-          </div>
+                        </div>
+        </>
+                     :
+                    <p className='paidFees'>You havent paid your fees yet</p>
+      }
+        
       </div>
   )
 }

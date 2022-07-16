@@ -11,6 +11,7 @@
     display: flex;
     justify-content: flex-end;
     padding: 20px;
+    padding-top: 5px;
 }
 .payBtn{
     background-color: var(--primary_color);

@@ -3,21 +3,29 @@ nav{
     display: flex;
     flex-direction: column;
     padding: 10px;
+    justify-content: space-between;
 }
 .logo{
     color: #fff;
     text-decoration: none;
 }
 ul{
-    height: 70%;
+    height: 60%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
     padding: 0;
 }
-
+.logoutBtn{
+    color: #fff;
+    cursor: pointer;
+}
 li{
     list-style-type: none;
+    padding: 10px 0;
+}
+li:hover{
+    background-color: #848af7;
 }
 .link{
     text-decoration: none;
