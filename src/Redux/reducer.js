@@ -12,7 +12,10 @@ const initialState = {
     }, 
     courses: [{
             courseName: '', courseCode: '', courseUnit: ''
-    }]
+    }],
+    // Lecturers section
+    student: false,
+    approveCourses: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -31,9 +34,14 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, courses: [...state.courses, action.payload]
             }
+        // Lecturers section
         case ActionTypes.REGISTER_COURSES:
             return {
                 ...state, registered_course: true
+            }
+        case ActionTypes.APPROVE_COURSES:
+            return {
+                ...state, approveCourses : true
             }
         default:
             return state

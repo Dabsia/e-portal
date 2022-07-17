@@ -23,3 +23,7 @@ export const add_course = (courseDetails) => ({
 export const register_courses = () => ({
     type: ActionTypes.REGISTER_COURSES
 })
+
+export const approve_courses = () => ({
+    type: ActionTypes.APPROVE_COURSES
+})

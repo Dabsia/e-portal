@@ -7,7 +7,13 @@ const Table = () => {
 
     const courseDetails = useSelector(state => state.details.courses)
     const isCourseRegistered = useSelector(state => state.details.registered_course)
+    const approved = useSelector(state => state.details.approveCourses)
     const dispatch = useDispatch()
+
+    const RegisterCourse = () => {
+        dispatch(register_courses())
+        alert('Courses Registered')
+    }
 
 
     return (
@@ -37,11 +43,14 @@ const Table = () => {
             </table>
             <div className='btnContainer'>
                 {
-                    !isCourseRegistered ? <button className='payBtn' onClick={() => dispatch(register_courses())}>Register Courses</button>
-                        : <button className='payBtn'>Courses Registered</button>
+                    !isCourseRegistered && <button className='payBtn' onClick={RegisterCourse}>Register Courses</button>
+                        
                 }
                 
-          </div>
+            </div>
+            {
+                approved && <p style = {{color:'green'}}>Courses Approved</p>
+            }
       </div>
   )
 }
