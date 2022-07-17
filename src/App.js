@@ -8,10 +8,12 @@ import Profile from './pages/Profile/Profile'
 import CourseRegistration from './pages/CourseRegistration/CourseRegistration'
 import './App.css'
 import Home from './pages/Home.js/Home'
+import Result from './pages/Result/Result'
 
 // Lecturer
 
 import ApproveCourses from './pages/ApproveCourses/ApproveCourses'
+import UploadResult from './pages/UploadResult/UploadResult'
 
 const App = () => {
   return (
@@ -26,11 +28,11 @@ const App = () => {
           <Route path='/profile' element={<Profile />} />
           <Route path='/complains' element={<Complaints />} />
           <Route path='/hostel' element={<Hostel />} />
+          <Route path='/result' element={<Result />} />
 
           {/*Lecturer Link section */}
-          <Route path='/lecturer/:id' element={<ApproveCourses />} />
-
-
+          <Route path='/lecturer/approve-course' element={<ApproveCourses />} />
+          <Route path='/lecturer/upload-result' element={<UploadResult />} />
         </Routes>
       </section>
     </div>

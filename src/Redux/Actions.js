@@ -27,3 +27,12 @@ export const register_courses = () => ({
 export const approve_courses = () => ({
     type: ActionTypes.APPROVE_COURSES
 })
+
+export const add_result = (resultDetails) => ({
+    type: ActionTypes.ADD_RESULT,
+    payload: resultDetails
+})
+
+export const register_results = () => ({
+    type: ActionTypes.REGISTER_RESULTS
+})

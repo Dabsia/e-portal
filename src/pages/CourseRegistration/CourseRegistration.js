@@ -16,7 +16,7 @@ const CourseRegistration = () => {
         paid ? <>
           {!isCourseRegistered && <AddCourse />}
           {isCourseRegistered && <div className='dummyContainer'></div>}
-          <Table />
+          <Table show = {true} />
         </> : 
           <p className='paidFees'>You havent paid your fees yet</p>
 

@@ -3,16 +3,15 @@ import './Table.css'
 import { useSelector, useDispatch } from 'react-redux'
 import { register_courses } from '../../Redux/Actions'
 
-const Table = () => {
+const Table = ({show}) => {
 
     const courseDetails = useSelector(state => state.details.courses)
-    const isCourseRegistered = useSelector(state => state.details.registered_course)
     const approved = useSelector(state => state.details.approveCourses)
     const dispatch = useDispatch()
 
     const RegisterCourse = () => {
         dispatch(register_courses())
-        alert('Courses Registered')
+        alert('Courses Registered Already')
     }
 
 
@@ -43,7 +42,7 @@ const Table = () => {
             </table>
             <div className='btnContainer'>
                 {
-                    !isCourseRegistered && <button className='payBtn' onClick={RegisterCourse}>Register Courses</button>
+                    show && <button className='payBtn' onClick={RegisterCourse}>Register Courses</button>
                         
                 }
                 

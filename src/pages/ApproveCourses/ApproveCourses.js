@@ -7,17 +7,23 @@ const ApproveCourses = () => {
 
   const dispatch = useDispatch()
   const approved = useSelector(state => state.details.approveCourses)
-
+  const courses = useSelector(state => state.details.courses)
 
   const ApproveStudentCourse = () => {
+    if (courses.length === 1) {
+      alert('No course Available to Approve')
+      return
+    }
     dispatch(approve_courses())
     alert('Courses have been approved')
   }
 
   return (
     <div>
-      <Table />
+      <Table show = {false} />
       <div className='btnContainer'>
+        
+        
         {
           !approved && <button className='payBtn' onClick={ApproveStudentCourse}>Approve Courses</button>
         }
