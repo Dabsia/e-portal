@@ -48,21 +48,21 @@ const Profile = () => {
               <div className='names'>
                   <div className='nameHolder'>
                     <label htmlFor='fname'>First Name</label>
-                    <input className='profileInput' type = 'text' id = 'fname'  readOnly value = 'dabo' />
+                    <input className='profileInput' type = 'text' id = 'fname'  readOnly value = 'Maria' />
                   </div>
                   <div className='nameHolder'>
                     <label htmlFor='lname'>Last Name</label>
-                    <input className='profileInput' type = 'text' id = 'lname'  readOnly value = 'johnson' />
+                    <input className='profileInput' type = 'text' id = 'lname'  readOnly value = 'Joseph' />
                   </div>
               </div>
               <div className='otherDetails'>
                   <div className='otherDetailsHolder'>
                     <label htmlFor='email'>Email</label>
-                    <input className='profileInput' type = 'email' id = 'email'  readOnly value = 'dabojohnson98@gmail.com' />
+                    <input className='profileInput' type = 'email' id = 'email'  readOnly value = 'mariajoseph18@gmail.com' />
                   </div>
                   <div className='otherDetailsHolder'>
                     <label htmlFor='mat_no'>Matriculation Number</label>
-                    <input className='profileInput' type = 'text' id = 'mat_no'  readOnly value = 'scn/csc/180092'/>
+                    <input className='profileInput' type = 'text' id = 'mat_no'  readOnly value = 'scn/csc/180892'/>
                   </div>
               </div>
               <div className='facultyDetails'>

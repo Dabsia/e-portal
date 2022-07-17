@@ -9,7 +9,7 @@ const Payments = () => {
     const paid = useSelector(state => state.details.paid)
     const dispatch = useDispatch()
 
-    const amountDue =2000
+    const amountDue =200000
     const amountPaid = 0
     const balance = amountDue - amountPaid
     
