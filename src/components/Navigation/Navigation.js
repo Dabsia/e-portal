@@ -1,15 +1,27 @@
 import React from 'react'
-import { useSelector} from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useSelector, useDispatch} from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { logout } from '../../Redux/Actions'
 import './Navigation.css'
 
 
 const Navigation = () => {
 
   const student = useSelector(state => state.details.student)
+  const auth = useSelector(state => state.details.auth)
+
+  const dispatch = useDispatch()
+
+  const Navigate = useNavigate()
+
+  const LogUserOut = () => {
+    Navigate('/')
+    dispatch(logout())
+  }
 
   return (
-    <nav>
+
+    <nav style={{display: auth ? 'flex' : 'none'}}>
           <h4><Link className='logo' to='/dashboard'>e-portal</Link></h4>
           
           <ul style = {{height: student ? '60%' : '200px'}}>
@@ -29,7 +41,7 @@ const Navigation = () => {
         }
           </ul>
 
-          <h4 className='logoutBtn'><i className="ri-logout-box-line"></i>Logout</h4>
+          <h4 onClick={LogUserOut} className='logoutBtn'><i className="ri-logout-box-line"></i>Logout</h4>
     </nav>
   )
 }

@@ -36,3 +36,20 @@ export const add_result = (resultDetails) => ({
 export const register_results = () => ({
     type: ActionTypes.REGISTER_RESULTS
 })
+
+export const showNav = () => ({
+    type: ActionTypes.WELCOME
+})
+
+export const login = () => ({
+    type: ActionTypes.STUDENT_LOGIN
+})
+
+export const create_new_user = (user) => ({
+    type: ActionTypes.CREATE_NEW_USER,
+    payload: user
+})
+
+export const logout = () => ({
+    type: ActionTypes.LOGOUT
+})

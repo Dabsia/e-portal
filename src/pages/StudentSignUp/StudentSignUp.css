@@ -1,0 +1,10 @@
+.signUpForm{
+    background-color: var(--primary_color);
+        margin: auto;
+        height: 83%;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 30%
+}

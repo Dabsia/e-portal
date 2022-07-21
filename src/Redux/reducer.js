@@ -3,6 +3,7 @@ import { ActionTypes } from "./ActionTypes";
 const initialState = {
     paid: false,
     registered_course: false,
+    studentUserDetails: {},
     complaint : [{
         id: 0,
         message: 'The hostel is smelling'
@@ -16,6 +17,7 @@ const initialState = {
     // Lecturers section
     student: true,
     approveCourses: false,
+    auth: false,
     results: [{
             courseName: '', courseCode: '', coursegrade: ''
     }],
@@ -38,6 +40,18 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state, courses: [...state.courses, action.payload]
             }
+        case ActionTypes.STUDENT_LOGIN:
+            return {
+                ...state, student: true, auth: true
+            }
+        case ActionTypes.CREATE_NEW_USER:
+            return {
+                ...state, studentUserDetails: action.payload
+            }
+        case ActionTypes.LOGOUT:
+            return {
+                initialState
+            }
         // Lecturers section
         case ActionTypes.REGISTER_COURSES:
             return {
@@ -54,6 +68,11 @@ const reducer = (state = initialState, action) => {
         case ActionTypes.REGISTER_RESULTS:
             return {
                 ...state, registered_result: true
+            }
+        // 
+        case ActionTypes.WELCOME:
+            return {
+                ...state, auth: true
             }
         default:
             return state
