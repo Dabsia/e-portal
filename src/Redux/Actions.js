@@ -53,3 +53,12 @@ export const create_new_user = (user) => ({
 export const logout = () => ({
     type: ActionTypes.LOGOUT
 })
+
+export const lecturerLogin = () => ({
+    type: ActionTypes.LECTURER_LOGIN
+})
+
+export const create_new_lecturer = (user) => ({
+    type: ActionTypes.CREATE_NEW_LECTURER,
+    payload: user
+})

@@ -10,7 +10,7 @@ const Welcome = () => {
               <h1 className='signInOptions'>Are You a student or a lecturer</h1>
               <div className='btnHolders'> 
                 <button onClick={() => Navigate('/student/signin')} className='btnsRedirect'>Student</button>
-                <button onClick={() => Navigate('/lecturer')} className='btnsRedirect'>Lecturer</button>
+                <button onClick={() => Navigate('/lecturer/signin')} className='btnsRedirect'>Lecturer</button>
               </div>
           </div>
     </div>

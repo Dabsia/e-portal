@@ -7,7 +7,8 @@ import './Profile.css'
 
 
 const Profile = () => {
-    const paid = useSelector(state => state.details.paid)
+  const paid = useSelector(state => state.details.paid)
+  const student = useSelector(state => state.details.studentUserDetails)
     // const [selectedImage, setSelectedImage] = useState([]);
     // const [imageIsSelected, setImageIsSelected] = useState(false)
 
@@ -48,31 +49,31 @@ const Profile = () => {
               <div className='names'>
                   <div className='nameHolder'>
                     <label htmlFor='fname'>First Name</label>
-                    <input className='profileInput' type = 'text' id = 'fname'  readOnly value = 'Maria' />
+                    <input className='profileInput' type = 'text' id = 'fname'  readOnly value = {student.fname} />
                   </div>
                   <div className='nameHolder'>
                     <label htmlFor='lname'>Last Name</label>
-                    <input className='profileInput' type = 'text' id = 'lname'  readOnly value = 'Joseph' />
+                    <input className='profileInput' type = 'text' id = 'lname'  readOnly value = {student.lname} />
                   </div>
               </div>
               <div className='otherDetails'>
                   <div className='otherDetailsHolder'>
                     <label htmlFor='email'>Email</label>
-                    <input className='profileInput' type = 'email' id = 'email'  readOnly value = 'mariajoseph18@gmail.com' />
+                    <input className='profileInput' type = 'email' id = 'email'  readOnly value = {student.email} />
                   </div>
                   <div className='otherDetailsHolder'>
                     <label htmlFor='mat_no'>Matriculation Number</label>
-                    <input className='profileInput' type = 'text' id = 'mat_no'  readOnly value = 'scn/csc/180892'/>
+            <input className='profileInput' type='text' id='mat_no' readOnly value={ student.mat_no} />
                   </div>
               </div>
               <div className='facultyDetails'>
                   <div className='facultyDetailsHolder'>
                     <label htmlFor='level'>Level</label>
-                    <input className='profileInput' type = 'number' id = 'level' readOnly value = '400' />
+                    <input className='profileInput' type = 'number' id = 'level' readOnly value = {student.level} />
                   </div>
                   <div className='facultyDetailsHolder'>
                     <label htmlFor='dept'>Department</label>
-                    <input className='profileInput' type = 'text' id = 'dept' readOnly value = 'computer Science' />
+                    <input className='profileInput' type = 'text' id = 'dept' readOnly value = {student.department} />
                   </div>
               </div>
               <div className='otherfacultyDetails'>
@@ -80,7 +81,7 @@ const Profile = () => {
                     <p>Paid School fees : <span style={{ color: paid ? 'green' : 'red', fontWeight: 600 }} >{paid? 'Yes' : 'No'}</span></p>
                   </div>
                   <div className='otherfacultyDetailsHolder'>
-                    <p>Student Type : <span >Full Time</span></p>
+                    <p>Student Type : <span >{student.fullStudent}</span></p>
                   </div>
               </div>
           </div>

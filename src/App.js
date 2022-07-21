@@ -17,6 +17,8 @@ import StudentSignUp from './pages/StudentSignUp/StudentSignUp'
 
 import ApproveCourses from './pages/ApproveCourses/ApproveCourses'
 import UploadResult from './pages/UploadResult/UploadResult'
+import LecturerSignIn from './pages/LecturerSignIn/LecturerSignIn'
+import LecturerSignUp from './pages/LecturerSignUp/LecturerSignUp'
 
 const App = () => {
 
@@ -44,6 +46,9 @@ const App = () => {
           {/*Lecturer Link section */}
           <Route path='/lecturer/approve-course' element={<ApproveCourses />} />
           <Route path='/lecturer/upload-result' element={<UploadResult />} />
+          <Route path='/lecturer/signin' element={<LecturerSignIn />} />
+          <Route path='/lecturer/signup' element={<LecturerSignUp />} />
+          
         </Routes>
       </section>
     </div>

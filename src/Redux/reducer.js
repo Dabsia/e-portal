@@ -3,7 +3,7 @@ import { ActionTypes } from "./ActionTypes";
 const initialState = {
     paid: false,
     registered_course: false,
-    studentUserDetails: {},
+    studentUserDetails: null,
     complaint : [{
         id: 0,
         message: 'The hostel is smelling'
@@ -50,7 +50,7 @@ const reducer = (state = initialState, action) => {
             }
         case ActionTypes.LOGOUT:
             return {
-                initialState
+                ...state, auth: false
             }
         // Lecturers section
         case ActionTypes.REGISTER_COURSES:
@@ -73,6 +73,10 @@ const reducer = (state = initialState, action) => {
         case ActionTypes.WELCOME:
             return {
                 ...state, auth: true
+            }
+        case ActionTypes.LECTURER_LOGIN:
+            return {
+                ...state, student: false, auth: true
             }
         default:
             return state
