@@ -1,0 +1,756 @@
+//AddCourse component
+
+import React from 'react'
+import Table from '../../components/Table/Table'
+import { useDispatch, useSelector } from 'react-redux'
+import { approve_courses } from '../../Redux/Actions'
+
+const ApproveCourses = () => {
+
+  const dispatch = useDispatch()
+  const approved = useSelector(state => state.details.approveCourses)
+  const courses = useSelector(state => state.details.courses)
+
+  const ApproveStudentCourse = () => {
+    if (courses.length === 1) {
+      alert('No course Available to Approve')
+      return
+    }
+    dispatch(approve_courses())
+    alert('Courses have been approved')
+  }
+
+  return (
+    <div>
+      <Table show = {false} />
+      <div className='btnContainer'>
+        
+        
+        {
+          !approved && <button className='payBtn' onClick={ApproveStudentCourse}>Approve Courses</button>
+        }
+        
+      </div>
+    </div>
+    
+  )
+}
+
+export default ApproveCourses
+
+//Complaints component
+
+import React, {useState} from 'react'
+import './Complaints.css'
+import { complaint_message } from '../../Redux/Actions'
+import { useDispatch } from 'react-redux'
+
+const Complaints = () => {
+
+    const [complaint, setComplaint] = useState('')
+    const dispatch = useDispatch()
+
+    const message = {
+        id: Math.random().toString(36).slice(2),
+        text: complaint
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        if (complaint.length === 0) {
+            alert('Please type a message first')
+            return 
+        }
+        dispatch(complaint_message(message))
+        alert('Your message has been sent.')
+        setComplaint('')
+    }
+
+  return (
+      <div className='messageHolder'>
+          <form onSubmit={handleSubmit}>
+              <textarea className='textArea' onChange={e => setComplaint(e.target.value)} placeholder='Make a complain...' value = {complaint} />
+              <button className='sendMsg'>Send Complaint</button>
+          </form>
+      </div>
+  )
+}
+
+export default Complaints
+
+#CourseRegistration
+
+import React from 'react'
+import AddCourse from '../../components/AddCourse/AddCourse'
+import Table from '../../components/Table/Table'
+import { useSelector } from 'react-redux'
+
+
+const CourseRegistration = () => {
+
+  const paid = useSelector(state => state.details.paid)
+  const isCourseRegistered = useSelector(state => state.details.registered_course)
+    
+
+  return (
+    <div>
+      {
+        paid ? <>
+          {!isCourseRegistered && <AddCourse />}
+          {isCourseRegistered && <div className='dummyContainer'></div>}
+          <Table show = {true} />
+        </> : 
+          <p className='paidFees'>You havent paid your fees yet</p>
+
+        
+      }
+      </div>
+  )
+}
+
+export default CourseRegistration
+
+#Hostel component
+
+import React, {useState} from 'react'
+import './Hostel.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { save_hostel } from '../../Redux/Actions'
+
+
+const Hostel = () => {
+
+    const [hostelName, setHostel] = useState('')
+    const [hostelFlat, setHostelFlat] = useState('')
+    const [hostelRoomNumber, setHostelRoomNumber] = useState('')
+    
+    const dispatch = useDispatch()
+
+    
+
+    const hostel = useSelector(state => state.details.hostel)
+    const paid = useSelector(state => state.details.paid)
+
+    const hostelDetails = {
+        hostelName, hostelFlat, hostelRoomNumber
+    }
+
+    const handleHostelSubmit = (hostel) => {
+        if (!hostelName || !hostelFlat || !hostelRoomNumber) {
+            alert('Please enter correct values')
+            return 
+        }
+        dispatch(save_hostel(hostelDetails))
+        alert('Hostel Submitted')
+    }
+
+    return (
+      <div>
+            {
+                paid ?
+                    
+            <><div className='hostel__desc'>
+                <h2>Hostel Details</h2>
+                <p>Hostel Name: { hostel.hostelName} </p>
+                <p>Hostel Flat: { hostel.hostelFlat} </p>
+                <p>Room number:  { hostel.hostelRoomNumber} </p>
+                <div className='selectionsContainer'>
+                    <select className="form-control" value = {hostelName} onChange = {e => setHostel(e.target.value)}>
+                        <option disabled>Select Hostel</option>
+                        <option name = 'abv'>Above Only</option>
+                        <option name = 'bog' >Balm of Gilead</option>
+                        <option name = 'grc' >Grace</option>
+                        <option name = 'spl' >Splendour</option>
+                        <option name='chm' >Champions</option>
+                        <option name = 'hpe' >Hope</option>
+                        <option name = 'pce' >Peace</option>
+                        <option name = 'crt' >Court</option>
+                </select>
+                
+                <input type='text' className = 'form-control' placeholder='Enter hostel flat' value={hostelFlat} onChange={e => setHostelFlat(e.target.value)} />
+                <input type='text' className = 'form-control' placeholder='Enter room number' value={ hostelRoomNumber} onChange = {e => setHostelRoomNumber(e.target.value)} />
+            </div>
+            </div>
+            <div className='btnContainer'>
+                <button onClick={handleHostelSubmit} className='payBtn'>Save Details</button>
+                        </div>
+        </>
+                     :
+                    <p className='paidFees'>You havent paid your fees yet</p>
+      }
+        
+      </div>
+  )
+}
+
+export default Hostel
+
+#Lecturer signIn component
+
+import React, {useState} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { lecturerLogin } from '../../Redux/Actions'
+
+
+const LecturerSignIn = () => {
+  const dispatch = useDispatch()
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const [isLoading, setIsLoading] = useState(false)
+
+    const Navigate = useNavigate()
+
+
+    const API_KEY = "AIzaSyDOeMC8aU6VKdRIq8dQ8HFOcGuVeSUG7JA" 
+
+    const SubMitForm = (e) => {
+        e.preventDefault()
+        
+        if ( !email || password.length === 0) { 
+            alert('Please fill in the form correctly')
+            return  
+      } 
+      
+        
+        setIsLoading(true)
+    // Submitting the user input to firebase 
+    fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        returnSecureToken: true
+      }),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    }).then(res => {
+      setIsLoading(false)
+      if (res.ok){
+          console.log('Login Successful')
+          Navigate('/dashboard')
+          dispatch(lecturerLogin())
+        return res.json()
+      }
+      // Show Auth Message if failed
+      else{
+        return res.json().then(data => {
+          console.log(data)
+          let errorMessage = 'Authentication Failed'
+          if (data && data.error && data.error.message) {
+            errorMessage = data.error.message
+            }
+            alert(errorMessage)
+          throw new Error(errorMessage);
+        });
+      }
+    })
+    }
+
+  return (
+    <div className='StudentForm'>
+        <form className='signInForm' onSubmit={SubMitForm}> 
+              <div className='signInFormContainer'>
+                  <input className='signInFormInput' type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={ email} />
+                <input className='signInFormInput' type = 'password' placeholder='password' onChange={(e) => setPassword(e.target.value)} value = {password} />
+                <button className='signInBtn'>{ isLoading ? 'Loading...' : 'Log In'}</button>
+                <p>Don't have an account? <Link to = '/lecturer/signup'>Create Account</Link></p>
+              </div>
+        </form>
+      </div>
+  )
+}
+
+
+
+export default LecturerSignIn
+
+'#Lecturer signup component
+
+import React, {useState} from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { create_new_lecturer } from '../../Redux/Actions'
+import { useDispatch } from 'react-redux'
+
+
+const LecturerSignUp = () => {
+  const dispatch = useDispatch()
+
+    const API_KEY = "AIzaSyDOeMC8aU6VKdRIq8dQ8HFOcGuVeSUG7JA" 
+
+    const [fname, setFname] = useState('')
+    const [lname, setLname] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const [isLoading, setIsLoading] = useState(false)
+  
+    const Navigate = useNavigate()
+
+    const SubMitForm = (e) => {
+        e.preventDefault()
+        if (!fname || !lname || !email || password.length === 0) { 
+            alert('Please fill in the form correctly')
+            return  
+      } 
+      const user = {
+        email, fname, lname
+      }
+      
+      setIsLoading(true)
+    fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        returnSecureToken: true
+      }),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    }).then(res => {
+      setIsLoading(false)
+      if (res.ok){
+        // Sending the user datails to firebase
+
+        fetch('https://e-portal-fc6d8-default-rtdb.firebaseio.com/lecturers.json', {
+          method : 'POST',
+          body: JSON.stringify(user),
+          headers: {
+            'Content-Type' : 'application/json'
+          }
+        }).then(res => res.json()).then(data => console.log(data))
+
+
+        dispatch(create_new_lecturer(user))
+        Navigate('/lecturer/signin')
+      }
+      else{
+        return res.json().then(data => {
+          let errorMessage = 'Authentication Failed'
+          if (data && data.error && data.error.message) {
+            errorMessage = data.error.message
+          }
+          alert(errorMessage)
+        });
+      }
+    })
+
+    }
+
+
+
+  return (
+    <div className='StudentForm'>
+        <form className='signUpForm' onSubmit={SubMitForm}> 
+              <div className='signInFormContainer'>
+                  <input className='signInFormInput' type='text' placeholder='First Name' onChange={e => setFname(e.target.value)} value={ fname} />
+                <input className='signInFormInput' type = 'text' placeholder='Last Name' onChange={e => setLname(e.target.value)} value={ lname} />
+                <input className='signInFormInput' type = 'email' placeholder='email' onChange={e => setEmail(e.target.value)} value={ email} />
+                <input className='signInFormInput' type = 'password' placeholder='password' onChange={e => setPassword(e.target.value)} value={ password}  />
+                <button className='signInBtn'>{ !isLoading ?  'Create Account' : 'Loading...'}</button>
+                <p>Already have an account? <Link to = '/lecturer/signin'>Sign In</Link></p>
+              </div>
+        </form>
+      </div>
+  )
+}
+
+export default LecturerSignUp
+
+# Payments components
+
+import React from 'react'
+import PaystackPop from '@paystack/inline-js'
+import { payment_confirmed } from '../../Redux/Actions'
+import { useSelector, useDispatch } from 'react-redux'
+import './Payments.css'
+
+const Payments = () => {
+
+    const paid = useSelector(state => state.details.paid)
+    const dispatch = useDispatch()
+
+    const amountDue =2000
+    const amountPaid = 0
+    const balance = amountDue - amountPaid
+    
+
+
+    const payWithPayStack = () => {
+        
+
+        const payStack = new PaystackPop()
+        payStack.newTransaction({
+            key: 'pk_test_d6ce738cabd2d7c798c5f2c4a3931cc6efbe7714',
+            amount: amountDue * 100,
+            email: 'dabojohnson98@gmail.com',
+            onSuccess(transaction) {
+                let message = `Payment Complete! Reference ${transaction.reference}`
+                alert(message)
+                dispatch(payment_confirmed())
+            },
+            onCancel() {
+                alert('Do you want to cancel the transaction')
+            }
+        })
+    }
+    
+    const newPaid = paid ?  amountDue : amountPaid
+
+  return (
+      <div>
+          <div className='payments__description'>
+              <h2>Summary of Finance</h2>
+              <h3>Section: 2021/2022</h3>
+              <p>Payment Item: SCHOOL FEES</p>
+              <p>Amount Due: ₦{amountDue.toLocaleString()}</p>
+              <p>Amount Paid: ₦{newPaid.toLocaleString()}</p>
+              <p>Hostel Amount Paid: ₦100,000</p>
+              <p>Balance: <span style={{ color: paid ? '#121212' : 'red' }}>₦{balance.toLocaleString()}</span></p>
+          </div>
+          <div className='btnContainer'>
+              {
+                  !paid ? <button className='payBtn' onClick={payWithPayStack}>Pay Now</button> : 
+                      <button className='payBtn'>Payment Completed</button>
+              }
+          </div>
+      </div>
+  )
+}
+
+export default Payments
+
+##Profile component
+
+import React from 'react'
+import { useSelector } from 'react-redux'
+// import { storage } from '../../firebase/config';
+// import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
+import './Profile.css'
+// import studentPicture from '../../assets/51153488_460175587849353_261682629244354560_n.jpg'
+
+
+const Profile = () => {
+  const paid = useSelector(state => state.details.paid)
+  const student = useSelector(state => state.details.studentUserDetails)
+    // const [selectedImage, setSelectedImage] = useState([]);
+    // const [imageIsSelected, setImageIsSelected] = useState(false)
+
+    // const selectImage = (e) => {
+
+    //     setSelectedImage(e.target.files[0].name);
+        
+    // //     const storageRef = ref(storage, `/files/${selectedImage}`);
+    // //     const uploadTask = uploadBytesResumable(storageRef, selectedImage)
+    // //     uploadTask.on('state_changed', (snapshot) => {}, (err) => console.log(err),
+    // //   () => {
+    // //     getDownloadURL(uploadTask.snapshot.ref)
+    // //           .then((url) => console.log(url))
+          
+    // //   }
+    // // )
+    //     setImageIsSelected(true)
+    //     console.log(selectedImage)
+    //     console.log(imageIsSelected)
+    //     alert('success')
+    // }
+
+  return (
+      <div className='profileContainer'>
+          <header className='profileHeader'>
+            <h2 className='headerText'>Profile</h2>
+          </header>
+          {/*<div className='imageBox'>
+            <div className='imageContainer'>
+                <img className='image' src = {imageIsSelected ? selectedImage : studentPicture } alt='student' />
+            </div>
+            <input
+                type="file"
+                  onChange={selectImage}
+            />
+  </div> */}
+          <div className='studentDetails'>
+              <div className='names'>
+                  <div className='nameHolder'>
+                    <label htmlFor='fname'>First Name</label>
+                    <input className='profileInput' type = 'text' id = 'fname'  readOnly value = {student.fname} />
+                  </div>
+                  <div className='nameHolder'>
+                    <label htmlFor='lname'>Last Name</label>
+                    <input className='profileInput' type = 'text' id = 'lname'  readOnly value = {student.lname} />
+                  </div>
+              </div>
+              <div className='otherDetails'>
+                  <div className='otherDetailsHolder'>
+                    <label htmlFor='email'>Email</label>
+                    <input className='profileInput' type = 'email' id = 'email'  readOnly value = {student.email} />
+                  </div>
+                  <div className='otherDetailsHolder'>
+                    <label htmlFor='mat_no'>Matriculation Number</label>
+            <input className='profileInput' type='text' id='mat_no' readOnly value={ student.mat_no} />
+                  </div>
+              </div>
+              <div className='facultyDetails'>
+                  <div className='facultyDetailsHolder'>
+                    <label htmlFor='level'>Level</label>
+                    <input className='profileInput' type = 'number' id = 'level' readOnly value = {student.level} />
+                  </div>
+                  <div className='facultyDetailsHolder'>
+                    <label htmlFor='dept'>Department</label>
+                    <input className='profileInput' type = 'text' id = 'dept' readOnly value = {student.department} />
+                  </div>
+              </div>
+              <div className='otherfacultyDetails'>
+                  <div className='otherfacultyDetailsHolder'>
+                    <p>Paid School fees : <span style={{ color: paid ? 'green' : 'red', fontWeight: 600 }} >{paid? 'Yes' : 'No'}</span></p>
+                  </div>
+                  <div className='otherfacultyDetailsHolder'>
+                    <p>Student Type : <span >{student.fullStudent}</span></p>
+                  </div>
+              </div>
+          </div>
+      </div>
+
+  )
+}
+
+export default Profile
+
+##  Results component
+
+import React from 'react'
+import ResultTable from '../../components/ResultTable/ResultTable'
+import { useSelector } from 'react-redux'
+
+const Result = () => {
+
+    const isResultPosted = useSelector(state => state.details.registered_result)
+
+  return (
+      <div>
+          
+          {
+              isResultPosted ? <ResultTable /> : <p>Result hasn't been uploaded</p>
+          }
+          
+        
+      </div>
+  )
+}
+
+export default Result
+
+#Student signin component
+
+import React, {useState} from 'react'
+import './StudentSignIn.css'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { login } from '../../Redux/Actions'
+
+const StudentSignIn = () => {
+
+    const dispatch = useDispatch()
+
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
+    const [isLoading, setIsLoading] = useState(false)
+
+    const Navigate = useNavigate()
+
+
+    const API_KEY = "AIzaSyDOeMC8aU6VKdRIq8dQ8HFOcGuVeSUG7JA" 
+
+    const SubMitForm = (e) => {
+        e.preventDefault()
+        
+        if ( !email || password.length === 0) { 
+            alert('Please fill in the form correctly')
+            return  
+      } 
+      
+        
+        setIsLoading(true)
+    // Submitting the user input to firebase 
+    fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${API_KEY}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        returnSecureToken: true
+      }),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    }).then(res => {
+      setIsLoading(false)
+      if (res.ok){
+          console.log('Login Successful')
+          Navigate('/dashboard')
+          dispatch(login())
+        return res.json()
+      }
+      // Show Auth Message if failed
+      else{
+        return res.json().then(data => {
+          console.log(data)
+          let errorMessage = 'Authentication Failed'
+          if (data && data.error && data.error.message) {
+            errorMessage = data.error.message
+            }
+            alert(errorMessage)
+          throw new Error(errorMessage);
+        });
+      }
+    })
+    }
+
+  return (
+    <div className='StudentForm'>
+        <form className='signInForm' onSubmit={SubMitForm}> 
+              <div className='signInFormContainer'>
+                  <input className='signInFormInput' type='email' placeholder='Email' onChange={(e) => setEmail(e.target.value)} value={ email} />
+                <input className='signInFormInput' type = 'password' placeholder='password' onChange={(e) => setPassword(e.target.value)} value = {password} />
+                <button className='signInBtn'>{ isLoading ? 'Loading...' : 'Log In'}</button>
+                <p>Don't have an account? <Link to = '/student/signup'>Create Account</Link></p>
+              </div>
+        </form>
+      </div>
+  )
+}
+
+export default StudentSignIn
+
+#Student SignUp component
+
+import React, {useState} from 'react'
+import './StudentSignUp.css'
+import { Link, useNavigate } from 'react-router-dom'
+import { create_new_user } from '../../Redux/Actions'
+import { useDispatch } from 'react-redux'
+
+const StudentSignUp = () => {
+
+    const dispatch = useDispatch()
+
+    const API_KEY = "AIzaSyDOeMC8aU6VKdRIq8dQ8HFOcGuVeSUG7JA" 
+
+    const [fname, setFname] = useState('')
+    const [lname, setLname] = useState('')
+    const [mat_no, setMat_no] = useState('')
+    const [level, setLevel] = useState('')
+    const [department, setDepartment] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+    const [fullStudent, setFullStudent] = useState('')
+
+    const [isLoading, setIsLoading] = useState(false)
+  
+    const Navigate = useNavigate()
+
+    const SubMitForm = (e) => {
+        e.preventDefault()
+        if (!fname || !lname || !mat_no || !level || !department || !fullStudent || !email || password.length === 0) { 
+            alert('Please fill in the form correctly')
+            return  
+      } 
+      const user = {
+        email, fname, lname, department, level, fullStudent, mat_no
+      }
+      
+      setIsLoading(true)
+    fetch(`https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${API_KEY}`, {
+      method: 'POST',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+        returnSecureToken: true
+      }),
+      headers: {
+        'Content-Type' : 'application/json'
+      }
+    }).then(res => {
+      setIsLoading(false)
+      if (res.ok){
+        // Sending the user datails to firebase
+
+        fetch('https://e-portal-fc6d8-default-rtdb.firebaseio.com/students.json', {
+          method : 'POST',
+          body: JSON.stringify(user),
+          headers: {
+            'Content-Type' : 'application/json'
+          }
+        }).then(res => res.json()).then(data => console.log(data))
+        dispatch(create_new_user(user))
+        Navigate('/student/signin')
+      }
+      else{
+        return res.json().then(data => {
+          let errorMessage = 'Authentication Failed'
+          if (data && data.error && data.error.message) {
+            errorMessage = data.error.message
+          }
+          alert(errorMessage)
+        });
+      }
+    })
+
+    }
+
+
+
+  return (
+    <div className='StudentForm'>
+        <form className='signUpForm' onSubmit={SubMitForm}> 
+              <div className='signInFormContainer'>
+                  <input className='signInFormInput' type='text' placeholder='First Name' onChange={e => setFname(e.target.value)} value={ fname} />
+                <input className='signInFormInput' type = 'text' placeholder='Last Name' onChange={e => setLname(e.target.value)} value={ lname} />
+                <input className='signInFormInput' type = 'text' placeholder='Mat_No' onChange={e => setMat_no(e.target.value)} value={ mat_no} />
+                <input className='signInFormInput' type = 'text' placeholder='Level' onChange={e => setLevel(e.target.value)} value={ level} />
+                <input className='signInFormInput' type='text' placeholder='Department' onChange={e => setDepartment(e.target.value)} value={ department} />
+                <input className='signInFormInput' type = 'email' placeholder='email' onChange={e => setEmail(e.target.value)} value={ email} />
+                <input className='signInFormInput' type = 'password' placeholder='password' onChange={e => setPassword(e.target.value)} value={ password}  />
+                  <select value = {fullStudent} onChange = {e => setFullStudent(e.target.value)} className='signInFormInput'>
+                      <option value = 'partTime'>Part-time</option>
+                      <option value = 'fullTime' >Full-time</option>
+                  </select>
+                <button className='signInBtn'>{ !isLoading ?  'Create Account' : 'Loading...'}</button>
+                <p>Already have an account? <Link to = '/student/signin'>Sign In</Link></p>
+              </div>
+        </form>
+      </div>
+  )
+}
+
+export default StudentSignUp
+
+##Upload Result component
+
+import React from 'react'
+import AddResult from '../../components/AddResult/AddResult'
+import ResultTable from '../../components/ResultTable/ResultTable'
+import { useSelector } from 'react-redux'
+
+
+const UploadResult = () => {
+
+    const isResultPosted = useSelector(state => state.details.registered_result)
+
+  return (
+      <div>
+
+          {!isResultPosted && <AddResult />}
+          {isResultPosted && <div className='dummyContainer'></div>}
+          
+          
+          <ResultTable show = {true} />
+      </div>
+  )
+}
+
+export default UploadResult

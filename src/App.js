@@ -19,6 +19,7 @@ import ApproveCourses from './pages/ApproveCourses/ApproveCourses'
 import UploadResult from './pages/UploadResult/UploadResult'
 import LecturerSignIn from './pages/LecturerSignIn/LecturerSignIn'
 import LecturerSignUp from './pages/LecturerSignUp/LecturerSignUp'
+import AllStudents from './components/AllStudents/AllStudents'
 
 const App = () => {
 
@@ -47,6 +48,7 @@ const App = () => {
           <Route path='/lecturer/approve-course' element={<ApproveCourses />} />
           <Route path='/lecturer/upload-result' element={<UploadResult />} />
           <Route path='/lecturer/signin' element={<LecturerSignIn />} />
+          <Route path='/lecturer/studentlist' element={<AllStudents />} />
           <Route path='/lecturer/signup' element={<LecturerSignUp />} />
           
         </Routes>

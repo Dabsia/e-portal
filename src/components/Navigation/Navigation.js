@@ -35,7 +35,7 @@ const Navigation = () => {
           <Link className='link' to='/complains'><li><i className="ri-chat-2-line"></i>Complaints</li></Link>
         </> : <>
               <Link className='link' to='/lecturer/approve-course'><li><i className="ri-chat-2-line"></i>Approve Courses</li></Link>
-              <Link className='link' to='/lecturer/students'><li><i className="ri-chat-2-line"></i>Students</li></Link>
+              <Link className='link' to='/lecturer/studentlist'><li><i className="ri-chat-2-line"></i>Students</li></Link>
               <Link className='link' to='/lecturer/upload-result'><li><i className="ri-chat-2-line"></i>Upload Results</li></Link>
             </>  
         }

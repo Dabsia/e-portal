@@ -7,6 +7,7 @@ import './Payments.css'
 const Payments = () => {
 
     const paid = useSelector(state => state.details.paid)
+    const student = useSelector(state => state.details.studentUserDetails)
     const dispatch = useDispatch()
 
     const amountDue =2000
@@ -22,7 +23,7 @@ const Payments = () => {
         payStack.newTransaction({
             key: 'pk_test_d6ce738cabd2d7c798c5f2c4a3931cc6efbe7714',
             amount: amountDue * 100,
-            email: 'dabojohnson98@gmail.com',
+            email: student.email,
             onSuccess(transaction) {
                 let message = `Payment Complete! Reference ${transaction.reference}`
                 alert(message)

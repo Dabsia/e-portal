@@ -12,8 +12,7 @@ const Hostel = () => {
     
     const dispatch = useDispatch()
 
-    // const API_KEY = "AIzaSyDOeMC8aU6VKdRIq8dQ8HFOcGuVeSUG7JA"
-    // const firebaseStorageUrl = 'https://e-portal-fc6d8-default-rtdb.firebaseio.com/'
+    
 
     const hostel = useSelector(state => state.details.hostel)
     const paid = useSelector(state => state.details.paid)
