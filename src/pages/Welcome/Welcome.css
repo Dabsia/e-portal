@@ -1,5 +1,5 @@
 .WelcomeContainer{
-    height: 100%;
+    height: 100vh;
     width: 100vw;
     overflow: hidden;
     display: flex;
@@ -19,7 +19,7 @@
 .btnHolders{
     display: flex;
     justify-content: space-between;
-    width: 40%;
+    width: 60%;
     margin: auto;
 }
 .btnsRedirect{

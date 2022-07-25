@@ -1,5 +1,4 @@
 import React from 'react'
-import Navigation from './components/Navigation/Navigation'
 import { Route, Routes } from 'react-router-dom'
 import Payments from './pages/Payments/Payments'
 import Complaints from './pages/Complaints/Complaints'
@@ -21,14 +20,18 @@ import LecturerSignIn from './pages/LecturerSignIn/LecturerSignIn'
 import LecturerSignUp from './pages/LecturerSignUp/LecturerSignUp'
 import AllStudents from './components/AllStudents/AllStudents'
 
+// Admin
+import AdminRecords from './pages/AdminRecords/AdminRecords'
+import AdminMessages from './pages/AdminMessages/AdminMessages'
+import AdminPostNotification from './pages/AdminPostNotification/AdminPostNotification'
+
 const App = () => {
 
   
 
   return (
-    <div className='container'>
-      <Navigation />
-      <section className='right'>
+    <div >
+
         <Routes>
           
           <Route path='/' element={<Welcome />} />
@@ -51,8 +54,12 @@ const App = () => {
           <Route path='/lecturer/studentlist' element={<AllStudents />} />
           <Route path='/lecturer/signup' element={<LecturerSignUp />} />
           
+          {/*Admin */}
+        <Route path='/admin/allrecords' element={<AdminRecords />} />
+        <Route path='/admin/messages' element={<AdminMessages />} />
+        <Route path='/admin/notification' element={<AdminPostNotification />} />
+
         </Routes>
-      </section>
     </div>
   )
 }

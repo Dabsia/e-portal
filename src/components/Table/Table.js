@@ -11,7 +11,7 @@ const Table = ({show}) => {
 
     const RegisterCourse = () => {
         dispatch(register_courses())
-        alert('Courses Registered Already')
+        alert('Courses Registered')
     }
 
 

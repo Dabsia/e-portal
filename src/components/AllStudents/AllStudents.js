@@ -1,14 +1,17 @@
 import React from 'react'
 import StudentList from '../StudentList/StudentList'
-import LecturerList from '../LecturerList/LecturerList'
+import Navigation from '../Navigation/Navigation'
 
 const AllStudents = () => {
     return (
-      <div>  
+      
+      <div className='container'>
+      <Navigation />
+      <section className='right'>
         <h1>List of all Registered students </h1>
             <StudentList />
-            <LecturerList />
-      </div>
+      </section>
+    </div>
   )
 }
 

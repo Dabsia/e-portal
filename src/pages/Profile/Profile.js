@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 // import { storage } from '../../firebase/config';
 // import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage'
 import './Profile.css'
+import Navigation from '../../components/Navigation/Navigation'
 // import studentPicture from '../../assets/51153488_460175587849353_261682629244354560_n.jpg'
 
 
@@ -32,7 +33,11 @@ const Profile = () => {
     // }
 
   return (
-      <div className='profileContainer'>
+      
+    <div className='container'>
+      <Navigation />
+      <section className='right'>
+        <div className='profileContainer'>
           <header className='profileHeader'>
             <h2 className='headerText'>Profile</h2>
           </header>
@@ -85,7 +90,9 @@ const Profile = () => {
                   </div>
               </div>
           </div>
-      </div>
+    </div>
+      </section>
+    </div>
   )
 }
 

@@ -21,7 +21,9 @@ const initialState = {
     results: [{
             courseName: '', courseCode: '', coursegrade: ''
     }],
-    registered_result: false
+    registered_result: false,
+    Notification: '',
+    adminPostedMessage: false
 }
 
 const reducer = (state = initialState, action) => {
@@ -77,6 +79,10 @@ const reducer = (state = initialState, action) => {
         case ActionTypes.LECTURER_LOGIN:
             return {
                 ...state, student: false, auth: true
+            }
+        case ActionTypes.NOTIFICATION:
+            return {
+                ...state, Notification: action.payload, adminPostedMessage: true
             }
         default:
             return state

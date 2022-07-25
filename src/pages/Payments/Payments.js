@@ -3,6 +3,7 @@ import PaystackPop from '@paystack/inline-js'
 import { payment_confirmed } from '../../Redux/Actions'
 import { useSelector, useDispatch } from 'react-redux'
 import './Payments.css'
+import Navigation from '../../components/Navigation/Navigation'
 
 const Payments = () => {
 
@@ -38,8 +39,11 @@ const Payments = () => {
     const newPaid = paid ?  amountDue : amountPaid
 
   return (
-      <div>
-          <div className='payments__description'>
+      
+      <div className='container'>
+      <Navigation />
+      <section className='right'>
+        <div className='payments__description'>
               <h2>Summary of Finance</h2>
               <h3>Section: 2021/2022</h3>
               <p>Payment Item: SCHOOL FEES</p>
@@ -54,7 +58,8 @@ const Payments = () => {
                       <button className='payBtn'>Payment Completed</button>
               }
           </div>
-      </div>
+      </section>
+    </div>
   )
 }
 

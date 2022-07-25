@@ -9,7 +9,7 @@ const ResultTable = ({show}) => {
 
     const RegisterResult = () => {
         dispatch(register_results())
-        alert('Results Registered Already')
+        alert('Results Registered')
     }
 
 

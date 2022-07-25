@@ -2,7 +2,7 @@ import React, {useState} from 'react'
 import './Hostel.css'
 import { useDispatch, useSelector } from 'react-redux'
 import { save_hostel } from '../../Redux/Actions'
-
+import Navigation from '../../components/Navigation/Navigation'
 
 const Hostel = () => {
 
@@ -31,8 +31,11 @@ const Hostel = () => {
     }
 
     return (
-      <div>
-            {
+
+        <div className='container'>
+            <Navigation />
+            <section className='right'>
+                {
                 paid ?
                     
             <><div className='hostel__desc'>
@@ -64,8 +67,8 @@ const Hostel = () => {
                      :
                     <p className='paidFees'>You havent paid your fees yet</p>
       }
-        
-      </div>
+            </section>
+    </div>
   )
 }
 

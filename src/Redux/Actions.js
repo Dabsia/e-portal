@@ -62,3 +62,8 @@ export const create_new_lecturer = (user) => ({
     type: ActionTypes.CREATE_NEW_LECTURER,
     payload: user
 })
+
+export const notification = (notificationMessage) => ({
+    type: ActionTypes.NOTIFICATION,
+    payload: notificationMessage
+})

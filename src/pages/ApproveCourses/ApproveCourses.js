@@ -2,6 +2,7 @@ import React from 'react'
 import Table from '../../components/Table/Table'
 import { useDispatch, useSelector } from 'react-redux'
 import { approve_courses } from '../../Redux/Actions'
+import Navigation from '../../components/Navigation/Navigation'
 
 const ApproveCourses = () => {
 
@@ -19,8 +20,10 @@ const ApproveCourses = () => {
   }
 
   return (
-    <div>
-      <Table show = {false} />
+    <div className='container'>
+      <Navigation />
+      <section className='right'>
+        <Table show = {false} />
       <div className='btnContainer'>
         
         
@@ -29,8 +32,8 @@ const ApproveCourses = () => {
         }
         
       </div>
+      </section>
     </div>
-    
   )
 }
 
