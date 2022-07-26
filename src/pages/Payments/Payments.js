@@ -11,7 +11,7 @@ const Payments = () => {
     const student = useSelector(state => state.details.studentUserDetails)
     const dispatch = useDispatch()
 
-    const amountDue =2000
+    const amountDue =20000
     const amountPaid = 0
     const balance = amountDue - amountPaid
     
@@ -49,7 +49,7 @@ const Payments = () => {
               <p>Payment Item: SCHOOL FEES</p>
               <p>Amount Due: ₦{amountDue.toLocaleString()}</p>
               <p>Amount Paid: ₦{newPaid.toLocaleString()}</p>
-              <p>Hostel Amount Paid: ₦100,000</p>
+              <p>Hostel Amount Paid: ₦10,000</p>
               <p>Balance: <span style={{ color: paid ? '#121212' : 'red' }}>₦{balance.toLocaleString()}</span></p>
           </div>
           <div className='btnContainer'>
