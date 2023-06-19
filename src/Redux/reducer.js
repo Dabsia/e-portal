@@ -1,25 +1,32 @@
 import { ActionTypes } from "./ActionTypes";
 
 const initialState = {
+
+    // New Redux
+    isLoading: false,
+    userDetails: {},
+
+
     paid: false,
     registered_course: false,
+
     studentUserDetails: null,
-    complaint : [{
+    complaint: [{
         id: 0,
         message: 'The hostel is smelling'
     }],
     hostel: {
-        hostelName: '', hostelFlat : '', hostelRoomNumber : ''
-    }, 
+        hostelName: '', hostelFlat: '', hostelRoomNumber: ''
+    },
     courses: [{
-            courseName: '', courseCode: '', courseUnit: ''
+        courseName: '', courseCode: '', courseUnit: ''
     }],
     // Lecturers section
     student: true,
     approveCourses: false,
     auth: false,
     results: [{
-            courseName: '', courseCode: '', coursegrade: ''
+        courseName: '', courseCode: '', coursegrade: ''
     }],
     registered_result: false,
     Notification: '',
@@ -28,6 +35,26 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
+
+        case ActionTypes.REGISTER_START:
+            return {
+                ...state, isLoading: true
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         case ActionTypes.STUDENT_PAID:
             return { ...state, paid: true }
         case ActionTypes.COMPLAINTS:
@@ -61,7 +88,7 @@ const reducer = (state = initialState, action) => {
             }
         case ActionTypes.APPROVE_COURSES:
             return {
-                ...state, approveCourses : true
+                ...state, approveCourses: true
             }
         case ActionTypes.ADD_RESULT:
             return {

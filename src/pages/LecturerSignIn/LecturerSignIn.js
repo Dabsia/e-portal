@@ -32,7 +32,7 @@ const LecturerSignIn = () => {
       method: 'POST',
       body: JSON.stringify({
         email: email,
-        password: password,
+        password: password,   
         returnSecureToken: true
       }),
       headers: {

@@ -24,42 +24,50 @@ import AllStudents from './components/AllStudents/AllStudents'
 import AdminRecords from './pages/AdminRecords/AdminRecords'
 import AdminMessages from './pages/AdminMessages/AdminMessages'
 import AdminPostNotification from './pages/AdminPostNotification/AdminPostNotification'
+import SignUp from './pages/SignUp/SignUp'
+import Learning from './pages/Learnin/Learning'
 
 const App = () => {
 
-  
+
 
   return (
     <div >
 
-        <Routes>
-          
-          <Route path='/' element={<Welcome />} />
-          
-          {/*Student Link section */}
-          <Route path='/student/signin' element={<StudentSignIn />} />
-          <Route path='/student/signup' element={<StudentSignUp />} />
-          <Route path='/dashboard' element={<Home />} />
-          <Route path='/payments' element={<Payments />} />
-          <Route path='/courses' element={<CourseRegistration />} />
-          <Route path='/profile' element={<Profile />} />
-          <Route path='/complains' element={<Complaints />} />
-          <Route path='/hostel' element={<Hostel />} />
-          <Route path='/result' element={<Result />} />
+      <Routes>
 
-          {/*Lecturer Link section */}
-          <Route path='/lecturer/approve-course' element={<ApproveCourses />} />
-          <Route path='/lecturer/upload-result' element={<UploadResult />} />
-          <Route path='/lecturer/signin' element={<LecturerSignIn />} />
-          <Route path='/lecturer/studentlist' element={<AllStudents />} />
-          <Route path='/lecturer/signup' element={<LecturerSignUp />} />
-          
-          {/*Admin */}
+        <Route path='/' element={<Welcome />} />
+        {/*General signup page*/}
+        <Route path='/signup' element={<SignUp />} />
+
+        {/*Student Link section */}
+        <Route path='/student/signin' element={<StudentSignIn />} />
+        <Route path='/student/signup' element={<StudentSignUp />} />
+        <Route path='/dashboard' element={<Home />} />
+        <Route path='/payments' element={<Payments />} />
+        <Route path='/courses' element={<CourseRegistration />} />
+        <Route path='/profile' element={<Profile />} />
+        <Route path='/complains' element={<Complaints />} />
+        <Route path='/hostel' element={<Hostel />} />
+        <Route path='/result' element={<Result />} />
+
+        {/*Lecturer Link section */}
+        <Route path='/lecturer/approve-course' element={<ApproveCourses />} />
+        <Route path='/lecturer/upload-result' element={<UploadResult />} />
+        <Route path='/lecturer/signin' element={<LecturerSignIn />} />
+        <Route path='/lecturer/studentlist' element={<AllStudents />} />
+        <Route path='/lecturer/signup' element={<LecturerSignUp />} />
+
+        {/*Admin */}
         <Route path='/admin/allrecords' element={<AdminRecords />} />
         <Route path='/admin/messages' element={<AdminMessages />} />
         <Route path='/admin/notification' element={<AdminPostNotification />} />
 
-        </Routes>
+
+        {/*Learning*/}
+        <Route path='learning' element={<Learning />} />
+
+      </Routes>
     </div>
   )
 }
