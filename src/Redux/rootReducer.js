@@ -10,7 +10,9 @@ const persistConfig = {
 }
 
 const rootReducer = combineReducers({
-    details: reducer
+    details: reducer,
+
 })
 
 export default persistReducer(persistConfig, rootReducer)
+

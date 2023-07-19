@@ -19,7 +19,7 @@
     width: 50%;
 }
 
-.generalSignUp{
+.generalSignUp {
     width: 70%;
     height: fit-content;
 }
@@ -27,6 +27,7 @@
 .inputContainer { 
     width: 100%;
     margin-top: 1rem;
+    margin-bottom: 1rem;
 }
 
 .inputContainer input {
@@ -47,4 +48,33 @@
     color: #fff;
     background-color: #5053BC;
     border: none;
+}
+
+.loginLink{
+    color: #F18D16;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 800px) {
+    .generalSignUp {
+        width: 80%;
+    
+    }
+}
+
+@media screen and (max-width: 770px) {
+    .signUpFormContainer{
+        width: 100%;
+        align-self: center;
+    }
+    .signUpImage{
+        display: none;
+        
+    }
+    .signupContainer{
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
 }

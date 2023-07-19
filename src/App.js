@@ -9,15 +9,12 @@ import './App.css'
 import Home from './pages/Home.js/Home'
 import Result from './pages/Result/Result'
 import Welcome from './pages/Welcome/Welcome'
-import StudentSignIn from './pages/StudentSignIn/StudentSignIn'
-import StudentSignUp from './pages/StudentSignUp/StudentSignUp'
 
 // Lecturer
 
 import ApproveCourses from './pages/ApproveCourses/ApproveCourses'
 import UploadResult from './pages/UploadResult/UploadResult'
-import LecturerSignIn from './pages/LecturerSignIn/LecturerSignIn'
-import LecturerSignUp from './pages/LecturerSignUp/LecturerSignUp'
+
 import AllStudents from './components/AllStudents/AllStudents'
 
 // Admin
@@ -26,6 +23,8 @@ import AdminMessages from './pages/AdminMessages/AdminMessages'
 import AdminPostNotification from './pages/AdminPostNotification/AdminPostNotification'
 import SignUp from './pages/SignUp/SignUp'
 import Learning from './pages/Learnin/Learning'
+import SignIn from './pages/SignIn/SignIn'
+
 
 const App = () => {
 
@@ -39,10 +38,9 @@ const App = () => {
         <Route path='/' element={<Welcome />} />
         {/*General signup page*/}
         <Route path='/signup' element={<SignUp />} />
+        <Route path='/signin' element={<SignIn />} />
 
         {/*Student Link section */}
-        <Route path='/student/signin' element={<StudentSignIn />} />
-        <Route path='/student/signup' element={<StudentSignUp />} />
         <Route path='/dashboard' element={<Home />} />
         <Route path='/payments' element={<Payments />} />
         <Route path='/courses' element={<CourseRegistration />} />
@@ -51,12 +49,17 @@ const App = () => {
         <Route path='/hostel' element={<Hostel />} />
         <Route path='/result' element={<Result />} />
 
+
+        // learning
+        <Route path='/learning' element={<Learning />} />
+
+
         {/*Lecturer Link section */}
         <Route path='/lecturer/approve-course' element={<ApproveCourses />} />
         <Route path='/lecturer/upload-result' element={<UploadResult />} />
-        <Route path='/lecturer/signin' element={<LecturerSignIn />} />
+
         <Route path='/lecturer/studentlist' element={<AllStudents />} />
-        <Route path='/lecturer/signup' element={<LecturerSignUp />} />
+
 
         {/*Admin */}
         <Route path='/admin/allrecords' element={<AdminRecords />} />

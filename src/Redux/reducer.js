@@ -5,7 +5,11 @@ const initialState = {
     // New Redux
     isLoading: false,
     userDetails: {},
-
+    isRegSuccessful: false,
+    isSignedIn: false,
+    message: '',
+    studentDetailsId: '',
+    studentDetails: {},
 
     paid: false,
     registered_course: false,
@@ -29,8 +33,8 @@ const initialState = {
         courseName: '', courseCode: '', coursegrade: ''
     }],
     registered_result: false,
-    Notification: '',
-    adminPostedMessage: false
+    Notification: 'We welcome all students back from the holidays. You are all advised to start paying your fees so you can have full access to the school portal',
+    adminPostedMessage: true
 }
 
 const reducer = (state = initialState, action) => {
@@ -38,11 +42,56 @@ const reducer = (state = initialState, action) => {
 
         case ActionTypes.REGISTER_START:
             return {
-                ...state, isLoading: true
+                ...state, isLoading: true, isRegSuccessful: false
+            }
+        case ActionTypes.REGISTER_SUCCESS:
+            return {
+                ...state, isLoading: false, userDetails: action.payload, isRegSuccessful: true
+            }
+        case ActionTypes.REGISTER_FAILED:
+            return {
+                ...state, isLoading: false, isRegSuccessful: false
             }
 
+        case ActionTypes.LOGIN_START:
+            return {
+                ...state, isLoading: true
+            }
+        case ActionTypes.LOGIN_SUCCESS:
+            return {
+                ...state, isLoading: false, isSignedIn: true
+            }
+        case ActionTypes.LOGIN_FAILED:
+            return {
+                ...state, isLoading: false, isSignedIn: false
+            }
+        case ActionTypes.POST_STUDENT_DETAILS_START:
+            return {
+                ...state, isLoading: true, message: ''
+            }
 
+        case ActionTypes.POST_STUDENT_DETAILS_SUCCESS:
+            return {
+                ...state, isLoading: false, message: '', studentDetailsId: action.payload
+            }
+        case ActionTypes.POST_STUDENT_DETAILS_FAILED:
+            return {
+                ...state, isLoading: false, message: action.payload
+            }
+        case ActionTypes.GET_STUDENT_DETAILS_START:
+            return {
+                ...state, isLoading: true, message: ''
+            }
 
+        case ActionTypes.GET_STUDENT_DETAILS_SUCCESS:
+            return {
+                ...state, isLoading: false, studentDetails: action.payload
+            }
+
+        case ActionTypes.GET_STUDENT_DETAILS_FAILED:
+            return {
+                ...state, isLoading: false, message: action.payload
+            }
 
 
 

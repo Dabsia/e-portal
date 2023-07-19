@@ -33,9 +33,12 @@
 }
 .studentDetails{
     margin-top: 80px;
+    
 }
 .names, .otherDetails, .facultyDetails, .otherfacultyDetails{
     display: flex;
+    
+    
     justify-content: space-between;   
 }
 label{
@@ -43,12 +46,24 @@ label{
     margin-bottom: 5px;
 }
 .nameHolder, .otherDetailsHolder, .facultyDetailsHolder, .otherfacultyDetailsHolder{
-    width: 47%;
+    width: 48%;
+    /* background-color: blue; */
     margin-bottom: 10px;
 }
 .profileInput{
-    width: 95%;
+    width: 100%;
     outline: none;
     height: 35px;
-    padding-left: 8px;
+    padding: 0;
+}
+
+.profileBtn{
+    width: 48%;
+    background-color: #F18D16;
+    outline: none;
+    border: none;
+    height: 3rem;
+    cursor: pointer;
+    color: #fff;
+    font-size: 1rem;
 }
